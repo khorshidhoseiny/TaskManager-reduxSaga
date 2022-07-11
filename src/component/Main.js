@@ -2,8 +2,9 @@ import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { IoChevronBackOutline } from "react-icons/io5";
 import TodoFilter from "../common/Filter";
-import { useState } from "react";
+import {  useState } from "react";
 import { IoAdd } from "react-icons/io5";
+
 
 const Main = () => {
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +25,7 @@ const Main = () => {
         <div className="flex gap-x-2 justify-center items-center">
           <p className="text-sm hidden md:block font-semibold dark:text-gray-200 text-slate-600">
             Filter by
-          </p>{" "}
+          </p>
           <TodoFilter />
         </div>
       </div>

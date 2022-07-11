@@ -27,6 +27,8 @@ const TodoSlice = createSlice({
       };
       state.todos.push(newTodo);
     },
+   
+    
     toggleTodo: (state, action) => {
       const seletedTodo = state.todos.find(
         (todo) => todo.id === action.payload.id
@@ -60,6 +62,7 @@ export const {
   updateTodo,
   setEdit,
   filterBy,
+  getTodosFromLocalStorage,
   
 } = TodoSlice.actions;
 
