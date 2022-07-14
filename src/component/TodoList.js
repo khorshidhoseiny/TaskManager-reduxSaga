@@ -1,24 +1,28 @@
 import TodoForm from "./TodoForm";
 import TodoItem from "./TodoItem";
 import { useDispatch, useSelector } from "react-redux";
-import { filters, setEdit } from "./features/TodoSlice";
+import { filters,  setEdit, } from "./features/TodoSlice";
+
 
 const TodoList = ({ setShowModal }) => {
   const { todos } = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
   const { edit } = useSelector((state) => state.todos);
   const { filterBy } = useSelector((state) => state.todos);
-
+  const dispatch = useDispatch();
+  
   const filteredTodo = () => {
     if (filterBy === filters.COMPLETED) {
-      return todos.filter((todo) => todo.completed);
+      return todos.filter((todo) => todo.completed) ;
     }
     if (filterBy === filters.NOT_COMPLETED) {
       return todos.filter((todo) => !todo.completed);
     }
+    
     // if none of above return all todos
     return todos;
   };
+ 
+
   const UncompleteTodo = todos.filter((t) => !t.completed).length;
 
   const renderTodos = () => {
@@ -34,7 +38,6 @@ const TodoList = ({ setShowModal }) => {
             dispatch(
               setEdit({ id: todo.id, title: todo.title, desc: todo.desc })
             );
-
             setShowModal(true);
           }}
         />
@@ -45,7 +48,7 @@ const TodoList = ({ setShowModal }) => {
   return (
     <div>
       {edit.id ? (
-        <TodoForm  />
+        <TodoForm />
       ) : (
         <div className="flex flex-col">
           {todos.length ? (

@@ -4,7 +4,7 @@ import { ThemeProvider } from "./component/Context/ThemeContext";
 import { store } from "./component/features/Store";
 import Main from "./component/Main";
 import NavBar from "./component/Navbar";
-import LeftSideBar from "./LeftSideBar";
+import LeftSideBar from "./component/LeftSideBar";
 
 function App() {
   const [open, setOpen] = useState(true);
