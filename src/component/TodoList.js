@@ -6,6 +6,7 @@ import { filters,  setEdit, } from "./features/TodoSlice";
 
 const TodoList = ({ setShowModal }) => {
   const { todos } = useSelector((state) => state.todos);
+  const SearchTodo = useSelector((state) => state.todos.searchTerm);
   const { edit } = useSelector((state) => state.todos);
   const { filterBy } = useSelector((state) => state.todos);
   const dispatch = useDispatch();
@@ -28,7 +29,9 @@ const TodoList = ({ setShowModal }) => {
   const renderTodos = () => {
     if (todos === "") return <p>set your today todos</p>;
 
-    return filteredTodo().map((todo) => {
+    return filteredTodo().filter(todo=> SearchTodo ? todo.title.toLowerCase().includes(SearchTodo.toLowerCase()): true)
+    
+    .map((todo) => {
       return (
         <TodoItem
           id={todo.id}
@@ -52,7 +55,7 @@ const TodoList = ({ setShowModal }) => {
       ) : (
         <div className="flex flex-col">
           {todos.length ? (
-            <h1 className="text-xl mt-7 mb-2 text-slate-400 font-semibold ">
+            <h1 className="text-lg md:text-xl mt-7 mb-2 text-slate-400 font-semibold ">
               Tasks : {UncompleteTodo}
             </h1>
           ) : (

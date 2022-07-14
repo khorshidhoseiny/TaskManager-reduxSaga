@@ -4,11 +4,13 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { BsCollectionFill } from "react-icons/bs";
 import ProfileImg from "./../image/profile.webp";
 import Toggle from "../common/ThemeToggle";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-
-
+import { setSearchTerm } from "./features/TodoSlice";
 
 const NavBar = ({ open, setOpen }) => {
+  const { searchTerm } = useSelector((state) => state.todos);
+  const dispatch=useDispatch();
   const [searchInputToggle, setSearchInputToggle] = useState(false);
 
   return (
@@ -42,7 +44,9 @@ const NavBar = ({ open, setOpen }) => {
         {searchInputToggle ? (
           <input
             type="text"
-            className="bg-gray-100 border-2 outline-none mr-2 transition-all duration-500 ease-in border-gray-300 dark:bg-gray-500 dark:border-gray-400  p-1 rounded-md"
+            className="bg-gray-100  absolute md:relative md:top-auto md:right-auto right-9 h-7 md:h-auto top-14 w-24  border-2 outline-none mr-2 transition-all duration-500 ease-in border-gray-300 dark:bg-gray-500 dark:border-gray-400  p-1 rounded-md"
+            value={searchTerm}
+            onChange={(e)=>dispatch(setSearchTerm(e.target.value))}
           />
         ) : (
           ""
